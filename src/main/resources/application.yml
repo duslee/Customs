@@ -1,0 +1,81 @@
+server:
+  port: 9990
+  address: 0.0.0.0
+  servlet:
+    context-path: /
+
+spring:
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 150MB
+  # 异步超时设置：-1表示不受超时限制
+  mvc:
+    async:
+      request-timeout: -1
+  devtools:
+    restart:
+      additional-paths:
+        - src/main/java
+      exclude: static/**,public/**
+  datasource:
+    url: jdbc:mysql://localhost:3306/hk-customs?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    #    url: jdbc:mysql://10.88.44.44:3306/hk-customs?autoReconnect=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    username: root
+    #    password: 2011abc521
+    #    password: iMC123
+    password: root
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+  messages:
+    fallback-to-system-locale: false
+    basename: i18n/messages
+    encoding: UTF-8
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/master.xml
+
+# 线程池相关参数配置
+thread:
+  pool:
+    core-size: 40
+    max-size: 50
+    queue-capacity: 400
+    keep-alive: 60
+    name-prefix: HkThread-
+
+# 定时任务配置时间（CRON表达式）
+fixed-time:
+  #  cron: 0 */3 * * * ?
+  cron: 0 0 1 * * ?
+
+# nmap相关配置
+nmap:
+  dir:
+    # Windows系统下存放nmap.exe执行文件的具体目录（由部署的服务器环境决定，目录和部署包路径一直，建议使用全路径）
+    windows: G:\hs_work\Project\HaiKouCustoms\tools\nmap-7.80\nmap.exe
+    # 其它系统下（如Linux、Mac等）可根据which nmap命令得知
+    other: /usr/local/Cellar/nmap/7.80_1/bin/nmap
+  param:
+    # nmap工具使用的时间优化参数，最大数字是5，可最大化提升扫描速度
+    time: -T5
+    # 其它参数，这里暂时不用补充
+    other:
+  scan:
+    # 使用nmap工具一次扫描最多4个IP地址，保证扫描过多的IP地址时并发处理，提升扫描效率
+    max: 4
+    # 线程最大支持数，多的排队等待
+    thread: 30
+    # 端口数据存放在数据库的超期时间（按天计算，数据超期了就执行删除操作）
+    expired: 7

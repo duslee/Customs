@@ -1,0 +1,8 @@
+swagger:
+  title: HaiKou Customs APIs
+  description: Use these APIs to fetch Data.
+  terms-of-service-url:
+  contact-name: Jeff
+  contact-url:
+  contact-email: FW.wuzhaofu@h3c.com
+  version: V1.0

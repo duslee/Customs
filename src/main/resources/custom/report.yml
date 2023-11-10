@@ -1,0 +1,33 @@
+report:
+  # 端口
+  port:
+    # 用于模板的信息提示
+    tip: 序号列可以不填，红色字体为必填项!
+    # 报表表头列表
+    column-title-list:
+      - 序号
+      - IP地址
+      - 端口号
+      - 协议
+      - 服务
+      - 创建时间
+    # 报表每列对应对象的域名
+    column-field-list:
+      - id
+      - ip
+      - port
+      - protocol
+      - service
+      - createdTime
+    # 报表对应每列不能为空的列的列表
+    not-null-columns:
+      - IP地址
+      - 端口号
+      - 协议
+      - 服务
+      - 创建时间
+    # 单元格对应的日期样式
+    date-format: m/d/yyyy HH:mm
+
+  # 其它
+  other:

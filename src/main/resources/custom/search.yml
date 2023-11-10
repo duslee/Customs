@@ -1,0 +1,15 @@
+search:
+  # 查询端口数据
+  port:
+    # 值相等
+    ins:
+      - id
+      - port
+    # 值包含
+    likes:
+      - ip
+      - protocol
+      - service
+    # 时间范围
+    time-range:
+      - createdTime
